@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
 import FAQsStylesmodulescss from 'dist/css/FAQsStyles.module.scss'
 import { useDispatch } from 'react-redux'
+import AuthService from '../services/auth.service'
 import { mergeClasses } from '../services/utils'
 import { addUsers, editUsers } from '../store/actions/usersActions'
 
@@ -24,7 +25,6 @@ const aptugotheme = createTheme({
 })
 
 import authHeaders from '../services/auth-header'
-import AuthService from '../services/auth.service'
 
 const localStyles = {
   mainPanel: { ['@media (min-width:960px)']: { backgroundColor: '#56baec', width: '100%', flexGrow: 1 } },
@@ -54,6 +54,7 @@ const RetrievePassword: FunctionComponent = (props: any) => {
     match: { params },
   } = props
   const classes = mergeClasses(baseClasses, localStyles)
+  const [currentUser, setcurrentUser] = React.useState<any>({})
   const [userData, setuserData] = React.useState<any>({ _id: null, Password: '' })
   const [recoverSuccess, setrecoverSuccess] = React.useState<any>(null)
   const [recoverError, setrecoverError] = React.useState<any>(null)
@@ -108,6 +109,12 @@ const RetrievePassword: FunctionComponent = (props: any) => {
     )
   }
   const dispatch = useDispatch()
+
+  React.useEffect(() => {
+    AuthService.getCurrentUser().then((currentUser) => {
+      setcurrentUser(currentUser)
+    })
+  }, [])
 
   // Theme selection
 
@@ -262,7 +269,7 @@ const RetrievePassword: FunctionComponent = (props: any) => {
           <div title="Empresa" className={theme.footerLinks}>
             <span className={theme.footerTitles}>Empresa</span>
 
-            <a target="_blank" href="https://www.aptugo.com/about-us">
+            <a target="_blank" href="https://www.aptugo.com/aboutUs">
               <div title="div" className={theme.footer_icon_links}>
                 <div title="div">
                   <picture>
@@ -314,7 +321,7 @@ const RetrievePassword: FunctionComponent = (props: any) => {
                 </div>
 
                 <div title="div" className={theme.footer_icon_links}>
-                  Academy
+                  Academy - lms
                 </div>
               </div>
             </a>

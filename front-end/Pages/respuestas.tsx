@@ -21,6 +21,7 @@ import Pagination from '../components/Pagination'
 import Sidebar from '../components/Sidebar/Sidebar'
 import Field from '../components/Table/Field'
 import Table from '../components/Table/Table'
+import authHeaders from '../services/auth-header'
 import AuthService from '../services/auth.service'
 import { addRespuestas, editRespuestas, loadRespuestas, removeRepuesta, searchRespuestas } from '../store/actions/respuestasActions'
 import { IRespuestasItem } from '../store/models'
@@ -31,8 +32,6 @@ const aptugotheme = createTheme({
     primary: green,
   },
 })
-
-import authHeaders from '../services/auth-header'
 
 const Respuestasalaspreguntas: FunctionComponent = (props: any) => {
   const {
@@ -108,13 +107,20 @@ const Respuestasalaspreguntas: FunctionComponent = (props: any) => {
   React.useEffect(() => {
     AuthService.getCurrentUser().then((currentUser) => {
       setcurrentUser(currentUser)
-      if (currentUser && currentUser.Role !== 'Admin') props.history.push('/login')
     })
   }, [])
 
-  if (!authHeaders() && currentUser && currentUser.Role === 'Admin') {
-    props.history.push('/')
-  }
+  authHeaders().then((result) => {
+    if (!result) {
+      navigation.push('/')
+    }
+  })
+
+  AuthService.getCurrentUser().then((currentUser) => {
+    if (currentUser && currentUser.Role !== 'Admin') {
+      props.history.push('/')
+    }
+  })
   return (
     <React.Fragment>
       <ThemeProvider theme={aptugotheme}>
@@ -263,14 +269,23 @@ const Respuestasalaspreguntas: FunctionComponent = (props: any) => {
                         <MenuItem key="Estilos Avanzados" value="Estilos Avanzados">
                           Estilos Avanzados
                         </MenuItem>
-                        <MenuItem key="Código fuente en aptugo" value="Código fuente en aptugo">
-                          Código fuente en aptugo
+                        <MenuItem key="Código fuente en Aptugo" value="Código fuente en Aptugo">
+                          Código fuente en Aptugo
                         </MenuItem>
-                        <MenuItem key="Clase de consulta" value="Clase de consulta">
+                        <MenuItem key=" GIT" value=" GIT">
+                          {' '}
+                          GIT
+                        </MenuItem>
+                        <MenuItem key=" Clase de consulta" value=" Clase de consulta">
+                          {' '}
                           Clase de consulta
                         </MenuItem>
                         <MenuItem key="Cierre y Deployment" value="Cierre y Deployment">
                           Cierre y Deployment
+                        </MenuItem>
+                        <MenuItem key=" Errores" value=" Errores">
+                          {' '}
+                          Errores
                         </MenuItem>
                       </TextField>
                     </LocalAddDialog>

@@ -6,6 +6,7 @@ import List from '@mui/material/List'
 import Typography from '@mui/material/Typography'
 import FAQsStylesmodulescss from 'dist/css/FAQsStyles.module.scss'
 import { NavLink } from 'react-router-dom'
+import AuthService from '../services/auth.service'
 
 const Team: FunctionComponent = (props: any) => {
   const {
@@ -13,7 +14,14 @@ const Team: FunctionComponent = (props: any) => {
     match: { params },
   } = props
   const classes = baseClasses
+  const [currentUser, setcurrentUser] = React.useState<any>({})
   const theme = FAQsStylesmodulescss
+
+  React.useEffect(() => {
+    AuthService.getCurrentUser().then((currentUser) => {
+      setcurrentUser(currentUser)
+    })
+  }, [])
 
   // Theme selection
 
@@ -58,19 +66,19 @@ const Team: FunctionComponent = (props: any) => {
               </div>
 
               <List className={theme.social}>
-                <a target="_self" href="https://www.facebook.com/damian.cazal">
+                <a target="_blank" href="https://www.facebook.com/damian.cazal">
                   <Facebook color="inherit" className={theme.linkIcon} sx={{}} />
                 </a>
 
                 <a
-                  target="_self"
+                  target="_blank"
                   href="https://www.linkedin.com/in/damian-jean-franco-cazal-860019155/
 "
                 >
                   <LinkedIn color="inherit" className={theme.linkIcon} sx={{}} />
                 </a>
 
-                <a target="_self" href="https://github.com/DamianCazal">
+                <a target="_blank" href="https://github.com/DamianCazal">
                   <GitHub color="inherit" className={theme.link_icon} sx={{}} />
                 </a>
 
@@ -100,19 +108,19 @@ const Team: FunctionComponent = (props: any) => {
               </div>
 
               <List className={theme.social}>
-                <a target="_self" href="https://www.facebook.com/CarinaBosio">
+                <a target="_blank" href="https://www.facebook.com/CarinaBosio">
                   <Facebook color="inherit" className={theme.linkIcon} sx={{}} />
                 </a>
 
-                <a target="_self" href="https://www.linkedin.com/in/carina-susana-bosio-73621215b/">
+                <a target="_blank" href="https://www.linkedin.com/in/carina-susana-bosio-73621215b/">
                   <LinkedIn color="inherit" className={theme.linkIcon} sx={{}} />
                 </a>
 
-                <a target="_self" href="https://github.com/CariBosio">
+                <a target="_blank" href="https://github.com/CariBosio">
                   <GitHub color="inherit" className={theme.link_icon} sx={{}} />
                 </a>
 
-                <a target="_self" href="https://www.instagram.com/carinasbosio/">
+                <a target="_blank" href="https://www.instagram.com/carinasbosio/">
                   <Instagram color="inherit" className={theme.linkIcon} sx={{}} />
                 </a>
               </List>
@@ -142,23 +150,23 @@ const Team: FunctionComponent = (props: any) => {
               </div>
 
               <List className={theme.social}>
-                <a target="_self" href="https://www.facebook.com/carloshoraciomacieldelima">
+                <a target="_blank" href="https://www.facebook.com/carloshoraciomacieldelima">
                   <Facebook color="inherit" className={theme.linkIcon} sx={{}} />
                 </a>
 
                 <a
-                  target="_self"
+                  target="_blank"
                   href="https://www.linkedin.com/in/horacio-carlos-maciel-de-lima/
 "
                 >
                   <LinkedIn color="inherit" className={theme.linkIcon} sx={{}} />
                 </a>
 
-                <a target="_self" href="https://github.com/carlos2010maciel">
+                <a target="_blank" href="https://github.com/carlos2010maciel">
                   <GitHub color="inherit" className={theme.link_icon} sx={{}} />
                 </a>
 
-                <a target="_self" href="https://www.instagram.com/carlosmacieldelima/">
+                <a target="_blank" href="https://www.instagram.com/carlosmacieldelima/">
                   <Instagram color="inherit" className={theme.linkIcon} sx={{}} />
                 </a>
               </List>
@@ -182,12 +190,12 @@ const Team: FunctionComponent = (props: any) => {
               </div>
 
               <List className={theme.social}>
-                <a target="_self" href="https://www.facebook.com/DanielaYael71317/">
+                <a target="_blank" href="https://www.facebook.com/DanielaYael71317/">
                   <Facebook color="inherit" className={theme.linkIcon} sx={{}} />
                 </a>
 
                 <a
-                  target="_self"
+                  target="_blank"
                   href="https://www.linkedin.com/in/daniela-yael-francesetti-493a441a7/
 "
                 >
@@ -198,7 +206,7 @@ const Team: FunctionComponent = (props: any) => {
                   <GitHub color="inherit" className={theme.link_icon} sx={{}} />
                 </NavLink>
 
-                <a target="_self" href="https://www.instagram.com/yaelina_71317/">
+                <a target="_blank" href="https://www.instagram.com/yaelina_71317/">
                   <Instagram color="inherit" className={theme.linkIcon} sx={{}} />
                 </a>
               </List>
@@ -226,13 +234,13 @@ const Team: FunctionComponent = (props: any) => {
                   <Facebook color="inherit" className={theme.linkIcon} sx={{}} />
                 </NavLink>
 
-                <a target="_self" href="https://www.linkedin.com/in/jorge-jara-538a9bab/">
+                <a target="_blank" href="https://www.linkedin.com/in/jorge-jara-538a9bab/">
                   <LinkedIn color="inherit" className={theme.linkIcon} sx={{}} />
                 </a>
 
-                <NavLink className={theme.link} to="/team">
+                <a target="_blank" href="https://github.com/jorgehara">
                   <GitHub color="inherit" className={theme.link_icon} sx={{}} />
-                </NavLink>
+                </a>
 
                 <NavLink className={theme.link} to="/team">
                   <Instagram color="inherit" className={theme.linkIcon} sx={{}} />
@@ -262,11 +270,7 @@ const Team: FunctionComponent = (props: any) => {
                   <Facebook color="inherit" className={theme.linkIcon} sx={{}} />
                 </NavLink>
 
-                <NavLink
-                  className={theme.link}
-                  to="/team
-"
-                >
+                <NavLink className={theme.link} to="/team">
                   <LinkedIn color="inherit" className={theme.linkIcon} sx={{}} />
                 </NavLink>
 
@@ -288,7 +292,7 @@ const Team: FunctionComponent = (props: any) => {
           <div title="Empresa" className={theme.footerLinks}>
             <span className={theme.footerTitles}>Empresa</span>
 
-            <a target="_blank" href="https://www.aptugo.com/about-us">
+            <a target="_blank" href="https://www.aptugo.com/aboutUs">
               <div title="div" className={theme.footer_icon_links}>
                 <div title="div">
                   <picture>
@@ -340,7 +344,7 @@ const Team: FunctionComponent = (props: any) => {
                 </div>
 
                 <div title="div" className={theme.footer_icon_links}>
-                  Academy
+                  Academy - lms
                 </div>
               </div>
             </a>

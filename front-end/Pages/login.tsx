@@ -13,6 +13,7 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import FAQsStylesmodulescss from 'dist/css/FAQsStyles.module.scss'
 import { NavLink } from 'react-router-dom'
+import AuthService from '../services/auth.service'
 
 const aptugotheme = createTheme({
   palette: {
@@ -20,14 +21,13 @@ const aptugotheme = createTheme({
   },
 })
 
-import AuthService from '../services/auth.service'
-
 const LoginPage: FunctionComponent = (props: any) => {
   const {
     history: navigation,
     match: { params },
   } = props
   const classes = baseClasses
+  const [currentUser, setcurrentUser] = React.useState<any>({})
   const [loginError, setloginError] = React.useState<any>(null)
   const [loginData, setloginData] = React.useState<any>({
     Email: '',
@@ -35,6 +35,12 @@ const LoginPage: FunctionComponent = (props: any) => {
     RememberMe: false,
   })
   const theme = FAQsStylesmodulescss
+
+  React.useEffect(() => {
+    AuthService.getCurrentUser().then((currentUser) => {
+      setcurrentUser(currentUser)
+    })
+  }, [])
 
   // Theme selection
 
@@ -163,7 +169,7 @@ const LoginPage: FunctionComponent = (props: any) => {
           <div title="Empresa" className={theme.footerLinks}>
             <span className={theme.footerTitles}>Empresa</span>
 
-            <a target="_blank" href="https://www.aptugo.com/about-us">
+            <a target="_blank" href="https://www.aptugo.com/aboutUs">
               <div title="div" className={theme.footer_icon_links}>
                 <div title="div">
                   <picture>
@@ -215,7 +221,7 @@ const LoginPage: FunctionComponent = (props: any) => {
                 </div>
 
                 <div title="div" className={theme.footer_icon_links}>
-                  Academy
+                  Academy - lms
                 </div>
               </div>
             </a>

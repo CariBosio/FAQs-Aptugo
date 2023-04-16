@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography'
 import FAQsStylesmodulescss from 'dist/css/FAQsStyles.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import AuthService from '../services/auth.service'
 import { mergeClasses } from '../services/utils'
 import { addUsers, editUsers } from '../store/actions/usersActions'
 import { IState } from '../store/reducers/index'
@@ -64,10 +65,17 @@ const Register: FunctionComponent = (props: any) => {
       [name]: value,
     })
   }
+  const [currentUser, setcurrentUser] = React.useState<any>({})
   const [registerError, setregisterError] = React.useState<any>(null)
   const [fieldsNull, setfieldsNull] = React.useState<any>(false)
   const theme = FAQsStylesmodulescss
   const dispatch = useDispatch()
+
+  React.useEffect(() => {
+    AuthService.getCurrentUser().then((currentUser) => {
+      setcurrentUser(currentUser)
+    })
+  }, [])
 
   // Theme selection
 
@@ -221,7 +229,7 @@ const Register: FunctionComponent = (props: any) => {
           <div title="Empresa" className={theme.footerLinks}>
             <span className={theme.footerTitles}>Empresa</span>
 
-            <a target="_blank" href="https://www.aptugo.com/about-us">
+            <a target="_blank" href="https://www.aptugo.com/aboutUs">
               <div title="div" className={theme.footer_icon_links}>
                 <div title="div">
                   <picture>
@@ -273,7 +281,7 @@ const Register: FunctionComponent = (props: any) => {
                 </div>
 
                 <div title="div" className={theme.footer_icon_links}>
-                  Academy
+                  Academy - lms
                 </div>
               </div>
             </a>

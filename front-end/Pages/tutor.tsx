@@ -8,9 +8,8 @@ import Backofficemodulescss from 'dist/css/Backoffice.module.scss'
 import { Fade, Zoom } from 'react-awesome-reveal'
 import { NavLink } from 'react-router-dom'
 import Sidebar from '../components/Sidebar/Sidebar'
-import AuthService from '../services/auth.service'
-
 import authHeaders from '../services/auth-header'
+import AuthService from '../services/auth.service'
 
 const Inicio: FunctionComponent = (props: any) => {
   const {
@@ -25,13 +24,20 @@ const Inicio: FunctionComponent = (props: any) => {
   React.useEffect(() => {
     AuthService.getCurrentUser().then((currentUser) => {
       setcurrentUser(currentUser)
-      if (currentUser && currentUser.Role !== 'Admin') props.history.push('/login')
     })
   }, [])
 
-  if (!authHeaders() && currentUser && currentUser.Role === 'Admin') {
-    props.history.push('/')
-  }
+  authHeaders().then((result) => {
+    if (!result) {
+      navigation.push('/')
+    }
+  })
+
+  AuthService.getCurrentUser().then((currentUser) => {
+    if (currentUser && currentUser.Role !== 'Admin') {
+      props.history.push('/')
+    }
+  })
 
   // Theme selection
 

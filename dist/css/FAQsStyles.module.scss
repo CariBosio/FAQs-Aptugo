@@ -2,41 +2,32 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
-
 
 .body {
     background-color: #F5EAEA !important;
 
-    [class~=css-1fo2sjy-MuiButtonBase-root-MuiFab-root] {
+    // ---Class desarrollo y producción botón dialog----------------
+
+    [class~=css-1fo2sjy-MuiButtonBase-root-MuiFab-root], [class~=css-1l3umsk] {
         background-color: #4F6ABF !important;
     }
 
-    [class~=css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input] {
+    // ---Class desarrollo y producción search--------------------------
+
+    [class~=css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input], [class~=css-1x5jdmq] {
         height: 0.1rem !important;
         width: 20rem !important;
-
     }
-
-    [class~=css-1x5jdmq] {
-        height: 0.1rem !important;
-        width: 20rem !important;
-
-    }
-
-
 }
 
 .mainarea {
-
     background-color: #FFFFFF;
     height: auto;
     min-height: 100vh;
     margin-bottom: 2rem;
     padding-bottom: 1rem !important;
 }
-
 
 //  ------- NAVBAR --------------------------------------------------------
 
@@ -451,7 +442,6 @@
 .bodyTeam {
     display: flex;
     flex-direction: column;
-    //    min-height: 100vh;
     height: auto;
     background-color: #F5EAEA !important;
 }

@@ -349,8 +349,10 @@ const Home: FunctionComponent = (props: any) => {
         <div title="Main Area" className={theme.mainarea}>
           <div title="Hero" className={theme.hero}>
             <div title="Hero Left" className={theme.hero_content}>
-              Aptugo FAQs es un sitio de preguntas y respuestas para alumnos y tutores de la herramienta low code Aptugo. Con tu ayuda, trabajamos
+              Aptugo FAQs es un sitio de preguntas y respuestas para alumnos y tutores de la herramienta low code Aptugo. Entre todos, trabajamos
               juntos para crear una biblioteca de respuestas detalladas para todas las preguntas sobre la herramienta y su uso.
+              <br />
+              Esta página fue creada con Aptugo, por ex-alumnos, teniendo en cuenta preguntas que surgen a menudo al utilizar la herramienta.
               <NavLink to="/register">
                 <Button variant="contained" color="inherit" className={theme.hero_button}>
                   Registrate para pertenecer a la comunidad
@@ -507,14 +509,23 @@ const Home: FunctionComponent = (props: any) => {
                   <MenuItem key="Estilos Avanzados" value="Estilos Avanzados">
                     Estilos Avanzados
                   </MenuItem>
-                  <MenuItem key="Código fuente en aptugo" value="Código fuente en aptugo">
-                    Código fuente en aptugo
+                  <MenuItem key="Código fuente en Aptugo" value="Código fuente en Aptugo">
+                    Código fuente en Aptugo
                   </MenuItem>
-                  <MenuItem key="Clase de consulta" value="Clase de consulta">
+                  <MenuItem key=" GIT" value=" GIT">
+                    {' '}
+                    GIT
+                  </MenuItem>
+                  <MenuItem key=" Clase de consulta" value=" Clase de consulta">
+                    {' '}
                     Clase de consulta
                   </MenuItem>
                   <MenuItem key="Cierre y Deployment" value="Cierre y Deployment">
                     Cierre y Deployment
+                  </MenuItem>
+                  <MenuItem key=" Errores" value=" Errores">
+                    {' '}
+                    Errores
                   </MenuItem>
                 </TextField>
               </LocalAddDialog>
@@ -623,7 +634,7 @@ const Home: FunctionComponent = (props: any) => {
           <div title="Empresa" className={theme.footerLinks}>
             <span className={theme.footerTitles}>Empresa</span>
 
-            <a target="_blank" href="https://www.aptugo.com/about-us">
+            <a target="_blank" href="https://www.aptugo.com/aboutUs">
               <div title="div" className={theme.footer_icon_links}>
                 <div title="div">
                   <picture>
@@ -675,7 +686,7 @@ const Home: FunctionComponent = (props: any) => {
                 </div>
 
                 <div title="div" className={theme.footer_icon_links}>
-                  Academy
+                  Academy - lms
                 </div>
               </div>
             </a>

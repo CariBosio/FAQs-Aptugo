@@ -20,6 +20,7 @@ import AddDialog from '../components/Dialog/Dialog'
 import Sidebar from '../components/Sidebar/Sidebar'
 import Field from '../components/Table/Field'
 import Table from '../components/Table/Table'
+import authHeaders from '../services/auth-header'
 import AuthService from '../services/auth.service'
 import { addUsers, editUsers, loadUsers, removeUsersrecord, searchUsers } from '../store/actions/usersActions'
 import { IUsersItem } from '../store/models'
@@ -30,8 +31,6 @@ const aptugotheme = createTheme({
     primary: green,
   },
 })
-
-import authHeaders from '../services/auth-header'
 
 const AlumnosyTutores: FunctionComponent = (props: any) => {
   const {
@@ -109,13 +108,20 @@ const AlumnosyTutores: FunctionComponent = (props: any) => {
   React.useEffect(() => {
     AuthService.getCurrentUser().then((currentUser) => {
       setcurrentUser(currentUser)
-      if (currentUser && currentUser.Role !== 'Admin') props.history.push('/login')
     })
   }, [])
 
-  if (!authHeaders() && currentUser && currentUser.Role === 'Admin') {
-    props.history.push('/')
-  }
+  authHeaders().then((result) => {
+    if (!result) {
+      navigation.push('/')
+    }
+  })
+
+  AuthService.getCurrentUser().then((currentUser) => {
+    if (currentUser && currentUser.Role !== 'Admin') {
+      props.history.push('/')
+    }
+  })
   return (
     <React.Fragment>
       <ThemeProvider theme={aptugotheme}>
